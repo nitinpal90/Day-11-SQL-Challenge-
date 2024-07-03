@@ -1,3 +1,10 @@
-You are given three tables: Students, Friends and Packages. Students contains two columns: ID and Name. Friends contains two columns: ID and Friend_ID (ID of the ONLY best friend). Packages contains two columns: ID and Salary (offered salary in $ thousands per month).
+Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table.
 
-SELECT s.Name FROM Students s JOIN Friends f ON s.ID = f.ID JOIN Packages p_self ON s.ID = p_self.ID JOIN Packages p_friend ON f.Friend_ID = p_friend.ID WHERE p_friend.Salary > p_self.Salary ORDER BY p_friend.Salary;
+select
+(case 
+ when a+b+c <= 2*greatest(a,b,c) then 'Not A Triangle' 
+ when a = b and b = c then 'Equilateral' 
+ when a = b or b  = c or a = c then 'Isosceles' 
+ else 'Scalene' end
+) as Triangle 
+from Triangles;
